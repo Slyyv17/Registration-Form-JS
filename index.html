@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>local storage in js </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="signup">
+        <h1> sign up </h1>
+        <input type="text" id="signupUsername" placeholder="Username" required>
+        <input type="email" id="signupEmail" placeholder="Email">
+        <input type="password" id="signupPassword" placeholder="Password" required>
+        <button type="submit" onclick="signup()" id="signup-btn">Sign Up</button>
+    </div>
+    
+    <div id="login" style="display:none;">
+        <h1>Sign In</h1>
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <p onclick="showForgotPassword()" id="forget">Forgot password?</p>
+        <button type="submit" onclick="login()" id="login-btn">Log In</button>
+    </div>
+    
+    <div id="forget-div" style="display:none;">
+        <h1>Forgot Password</h1>
+        <input type="email" id="forgetEmail" placeholder="Enter email">
+        <button type="submit" onclick="generateOTP()" id="OTP-btn">Submit</button>
+        <input type="text" id="otpInput" placeholder="Enter OTP" style="display:none;">
+        <button type="submit" onclick="verifyOTP()" id="verifyOTP-btn" style="display:none;">Verify OTP</button>
+    </div>
+
+    <div id="new-psw-div" style="display:none;">
+        <h1>create new password</h1>
+        <input type="password" id="newPsw" placeholder="New Password">
+        <button type="submit" onclick="newPassword()"> submit </button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
