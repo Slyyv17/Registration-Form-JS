@@ -70,7 +70,7 @@ h1 {
 }
 
 p {
-    margin-right: 12em;
+    margin-right: 10em;
     text-decoration: dashed;
     cursor: pointer;
 }
@@ -78,7 +78,7 @@ p {
 button {
     height: 2.5em;
     width: 100%; /* Full width of the container */
-    max-width: 20em; /* Set max-width for larger screens */
+    max-width: 19em; /* Set max-width for larger screens */
     margin-top: 0.5em;
     text-transform: capitalize;
     background-color: var(--main-clr);
