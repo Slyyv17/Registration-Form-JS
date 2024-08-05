@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>local storage in js </title>
+    <title> Infinity Space</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/infinity logo.png" type="image/x-icon">
 </head>
 <body>
     <div id="signup">
+        <div class="pp-box">
+            <img src="img/infinity logo.png" alt="pp-img">
+        </div>
         <h1> sign up </h1>
         <input type="text" id="signupUsername" placeholder="Username" required>
         <input type="email" id="signupEmail" placeholder="Email">
@@ -16,6 +20,9 @@
     </div>
     
     <div id="login" style="display:none;">
+        <div class="pp-box">
+            <img src="img/infinity logo.png" alt="pp-img">
+        </div>
         <h1>Sign In</h1>
         <input type="text" id="loginUsername" placeholder="Username" required>
         <input type="email" id="loginEmail" placeholder="Email">
@@ -25,6 +32,9 @@
     </div>
     
     <div id="forget-div" style="display:none;">
+        <div class="pp-box">
+            <img src="img/infinity logo.png" alt="pp-img">
+        </div>
         <h1>Forgot Password</h1>
         <input type="email" id="forgetEmail" placeholder="Enter email">
         <button type="submit" onclick="generateOTP()" id="OTP-btn">Submit</button>
@@ -33,10 +43,15 @@
     </div>
 
     <div id="new-psw-div" style="display:none;">
+        <div class="pp-box">
+            <img src="img/infinity logo.png" alt="pp-img">
+        </div>
         <h1>create new password</h1>
         <input type="password" id="newPsw" placeholder="New Password">
         <button type="submit" onclick="newPassword()"> submit </button>
     </div>
+
+    <div id="snackbar"></div>
     <script src="script.js"></script>
 </body>
 </html>
