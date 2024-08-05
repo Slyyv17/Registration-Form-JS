@@ -1,0 +1,18 @@
+{
+  "from": {
+      "email": "your-email@example.com",
+      "username": "Your Name"
+  },
+  "to": [
+      {
+          "email": "",
+          "username": ""
+      }
+  ],
+  "personalization": [
+      {
+          "email": "",
+          "data": {}
+      }
+  ]
+}
