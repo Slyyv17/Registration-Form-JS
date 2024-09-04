@@ -1,36 +1,3 @@
-const mailerSendApiKey = 'c86c87623b3c2c033e323cb9377c24b369a9c3d838534c71134c0376144687a3';
-
-async function sendOTPEmail(toEmail, otp) {
-    try {
-        const response = await axios.get('emailConfig.json');
-        const emailConfig = response.data;
-
-        emailConfig.to[0].email = toEmail;
-        emailConfig.to[0].username = toEmail.split('@')[0]; // Assuming username is part of the email before @
-        emailConfig.personalization[0].email = toEmail;
-
-        const emailData = {
-            from: emailConfig.from,
-            to: emailConfig.to,
-            subject: 'Your OTP Code',
-            html: `<p>Your OTP code is: ${otp}</p>`,
-            personalization: emailConfig.personalization
-        };
-
-        await axios.post('https://api.mailersend.com/v1/email', emailData, {
-            headers: {
-                'Authorization': `Bearer ${mailerSendApiKey}`,
-                'Content-Type': 'application/json'
-            }
-        });
-
-        showSnackbar('OTP sent to your email');
-    } catch (error) {
-        console.error('Error sending OTP email:', error);
-        showSnackbar('Error sending OTP email');
-    }
-}
-
 function signup() {
     const username = document.getElementById("signupUsername").value;
     const password = document.getElementById("signupPassword").value;
@@ -63,6 +30,9 @@ function login() {
     if (storedUser) {
         const user = JSON.parse(storedUser);
 
+        console.log("Attempting login with:", { username, email, password });
+        console.log("Stored user:", user);
+
         if (
             username === user.username &&
             email === user.email &&
@@ -71,7 +41,7 @@ function login() {
             showSnackbar("Login successful");
             // Proceed to the next step or page
         } else {
-            showSnackbar("Invalid username, email or password");
+            showSnackbar("Invalid username, email, or password");
         }
     } else {
         showSnackbar("No user found, please sign up first");
@@ -93,10 +63,8 @@ function generateOTP() {
         if (user.email === forgetEmail) {
             const otp = generateRandomOTP();
             localStorage.setItem("otp", otp);
-
-            // Send OTP via email
-            sendOTPEmail(forgetEmail, otp);
-
+            showSnackbar(`OTP generated. ${otp}`);
+            console.log("Generated OTP:", otp); // For debugging, remove in production
             document.getElementById("otpInput").style.display = "block";
             document.getElementById("verifyOTP-btn").style.display = "block";
         } else {
@@ -124,7 +92,6 @@ function verifyOTP() {
 
     if (enteredOTP === storedOTP) {
         showSnackbar("OTP verified successfully. You can now reset your password.");
-        // Show the new password section
         document.getElementById("forget-div").style.display = "none";
         document.getElementById("new-psw-div").style.display = "grid";
     } else {
@@ -141,7 +108,6 @@ function newPassword() {
             user.password = newPsw;
             localStorage.setItem("user", JSON.stringify(user));
             showSnackbar("Password reset successfully. Please log in with your new password.");
-            // Redirect to login
             document.getElementById("new-psw-div").style.display = "none";
             document.getElementById("login").style.display = "grid";
             clearForms();
@@ -162,13 +128,6 @@ function clearForms() {
     document.getElementById("loginPassword").value = "";
     document.getElementById("forgetEmail").value = "";
     document.getElementById("otpInput").value = "";
-}
-
-function showLogin() {
-    document.getElementById("signup").style.display = "none";
-    document.getElementById("forget-div").style.display = "none";
-    document.getElementById("new-psw-div").style.display = "none";
-    document.getElementById("login").style.display = "grid";
 }
 
 function showSnackbar(message) {
